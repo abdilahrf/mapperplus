@@ -3,6 +3,9 @@ import sys
 import argparse
 import subprocess
 from termcolor import colored
+from pathlib import Path
+
+TOOLS_PATH=Path(__file__).resolve().parent
 
 def main():
     parser = argparse.ArgumentParser(description="MapperPlus to download and extract all JS files from a given target or targets")
@@ -58,7 +61,7 @@ def main():
 
     # After either condition has been processed, run the additional command
     print(colored(f"Processing maps for target: {args.target}", "magenta"))
-    cmd = ['python3', 'process_all_maps.py', '--target-name', args.target]
+    cmd = ['python3', TOOLS_PATH + 'process_all_maps.py', '--target-name', args.target]
     subprocess.run(cmd)
     
     print(colored("All operations completed successfully!", "green"))
